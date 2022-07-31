@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:logcashflow/app/modules/views/passwordform_widget.dart';
 import 'package:logcashflow/app/routes/app_pages.dart';
 
 import '../controllers/setting_controller.dart';
@@ -29,31 +30,19 @@ class SettingView extends GetView<SettingController> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 10),
-                TextFormField(
-                  controller: controller.passwordOld,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: "Password saat ini",
-                    labelStyle: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                    hintText: "Masukkan password saat ini",
-                  ),
-                ),
-                const SizedBox(height: 12),
-                TextFormField(
-                  controller: controller.passwordNew,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: "Password baru",
-                    labelStyle: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                    hintText: "Masukkan password baru",
-                  ),
-                ),
                 const SizedBox(height: 20),
+                PasswordFormWidget(
+                    controller: controller.passwordOld,
+                    obscureText: true,
+                    labelText: "Password saat ini",
+                    hintText: "Masukkan password saat ini",
+                    icon: Icons.lock),
+                PasswordFormWidget(
+                    controller: controller.passwordNew,
+                    obscureText: true,
+                    labelText: "Password baru",
+                    hintText: "Masukkan password baru",
+                    icon: Icons.lock),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -77,20 +66,12 @@ class SettingView extends GetView<SettingController> {
                           message,
                           duration: const Duration(seconds: 3),
                           snackbarStatus: (status) {
-                            if (status == SnackbarStatus.CLOSED) {
+                            if (status == SnackbarStatus.CLOSED &&
+                                result == "sukses") {
                               Get.offAllNamed(Routes.login);
                             }
                           },
                         );
-
-                        // if (result == "sukses") {
-                        //   Future.delayed(
-                        //     const Duration(seconds: 3),
-                        //     () {
-                        //       Get.offAllNamed(Routes.login);
-                        //     },
-                        //   );
-                        // }
                       },
                       child: const Text("Submit")),
                 ),

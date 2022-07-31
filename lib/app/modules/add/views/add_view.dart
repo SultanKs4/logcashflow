@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:logcashflow/app/data/helper/currency.dart';
+import 'package:logcashflow/app/modules/add/widgets/addform_widget.dart';
 
 import '../controllers/add_controller.dart';
 
@@ -13,6 +14,7 @@ class AddView extends GetView<AddController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
         title: Text(
           'Tambah ${controller.typeString()}',
           style: const TextStyle(color: Colors.white),
@@ -25,8 +27,12 @@ class AddView extends GetView<AddController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextFormField(
+            const SizedBox(height: 20),
+            AddFormWidget(
               controller: controller.dateText,
+              labelText: "Tanggal",
+              hintText: "Masukkan Tanggal Disini",
+              icon: Icons.date_range_rounded,
               onTap: () async {
                 FocusScope.of(context).requestFocus(FocusNode());
                 var date = await showDatePicker(
@@ -39,15 +45,12 @@ class AddView extends GetView<AddController> {
                 controller.date = date;
                 controller.dateText.text = DateFormat.yMd().format(date);
               },
-              decoration: const InputDecoration(
-                labelText: "Tanggal",
-                labelStyle: TextStyle(fontWeight: FontWeight.bold),
-                hintText: "Masukkan Tanggal Disini",
-              ),
             ),
-            const SizedBox(height: 20),
-            TextFormField(
+            AddFormWidget(
               controller: controller.valueText,
+              labelText: "Nominal",
+              hintText: "Masukkan Nominal",
+              icon: Icons.money_rounded,
               keyboardType:
                   const TextInputType.numberWithOptions(decimal: true),
               inputFormatters: [
@@ -59,20 +62,12 @@ class AddView extends GetView<AddController> {
                   controller.value = curr.parse(value).toDouble();
                 }
               },
-              decoration: const InputDecoration(
-                labelText: "Nominal",
-                labelStyle: TextStyle(fontWeight: FontWeight.bold),
-                hintText: "Masukkan Nominal",
-              ),
             ),
-            const SizedBox(height: 20),
-            TextFormField(
+            AddFormWidget(
               controller: controller.descText,
-              decoration: const InputDecoration(
-                labelText: "Keterangan",
-                labelStyle: TextStyle(fontWeight: FontWeight.bold),
-                hintText: "Masukkan Keterangan",
-              ),
+              labelText: "Keterangan",
+              hintText: "Masukkan Keterangan",
+              icon: Icons.description_rounded,
             ),
             const SizedBox(height: 20),
             SizedBox(

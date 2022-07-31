@@ -10,6 +10,9 @@ class UsersTransaction {
     var query =
         'SELECT id, username, created_at FROM USERS WHERE username = ? AND password = ?';
     var resList = await db.selectQuery(query, [username, password]);
+    if (resList.isEmpty) {
+      return {};
+    }
     return resList.first;
   }
 

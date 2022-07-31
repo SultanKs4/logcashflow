@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:logcashflow/app/modules/views/passwordform_widget.dart';
 import 'package:logcashflow/app/routes/app_pages.dart';
 
 import '../controllers/login_controller.dart';
@@ -31,33 +32,18 @@ class LoginView extends GetView<LoginController> {
             const SizedBox(height: 100),
             Column(
               children: [
-                TextFormField(
-                  controller: controller.usernameText,
-                  decoration: const InputDecoration(
-                    hintText: "Username",
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black87, width: 2),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black87, width: 2),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                TextFormField(
-                  controller: controller.passwordText,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    hintText: "Password",
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black87, width: 2),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black87, width: 2),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
+                PasswordFormWidget(
+                    controller: controller.usernameText,
+                    obscureText: false,
+                    labelText: "Username",
+                    hintText: "Masukkan username",
+                    icon: Icons.person),
+                PasswordFormWidget(
+                    controller: controller.passwordText,
+                    obscureText: true,
+                    labelText: "Password",
+                    hintText: "Masukkan password",
+                    icon: Icons.lock),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
