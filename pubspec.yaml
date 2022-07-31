@@ -1,0 +1,31 @@
+name: logcashflow
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+
+dependencies:
+  cupertino_icons: ^1.0.2
+  crypto: ^3.0.2
+  get: 4.6.5
+  sqflite: ^2.0.3
+  path: ^1.8.1
+  intl: ^0.17.0
+  get_storage: ^2.0.3
+  charts_flutter: ^0.12.0
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  generate: true
+  assets:
+    - assets/img/
