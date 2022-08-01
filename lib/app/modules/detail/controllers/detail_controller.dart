@@ -8,6 +8,6 @@ class DetailController extends GetxController {
   @override
   void onReady() async {
     super.onReady();
-    listCashflow.value = await CashflowTransaction.getLastMonthList();
+    listCashflow.value = await CashflowTransaction.getAllData();
   }
 }

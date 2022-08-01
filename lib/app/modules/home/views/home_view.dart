@@ -1,9 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logcashflow/app/modules/home/widgets/cashflow_chart.dart';
 import 'package:logcashflow/app/modules/home/widgets/homebutton_widget.dart';
+import 'package:logcashflow/app/modules/home/widgets/linechart_widget.dart';
 import 'package:logcashflow/app/modules/home/widgets/textsummary_widget.dart';
 import 'package:logcashflow/app/routes/app_pages.dart';
 
@@ -50,7 +48,8 @@ class HomeView extends GetView<HomeController> {
               ],
             ),
             const SizedBox(height: 50),
-            CashflowChart(controller: controller),
+            // CashflowChart(controller: controller),
+            LineChartWidget(controller: controller),
             const SizedBox(height: 50),
             Column(
               children: [

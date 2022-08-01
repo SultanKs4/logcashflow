@@ -5,7 +5,7 @@ import 'package:logcashflow/app/data/models/chart.dart';
 class CashflowTransaction {
   static String _querySummary(String column, int id) {
     var query =
-        "SELECT $column FROM cashflow WHERE type = $id AND date > date('now','-1 months') ORDER BY date DESC";
+        "SELECT $column FROM cashflow WHERE type = $id AND date >= date('now','start of month') ORDER BY date DESC";
     return query;
   }
 
@@ -15,10 +15,9 @@ class CashflowTransaction {
     return db.insert(_tableName, cashflow.toMap());
   }
 
-  static Future<List<Cashflow>> getLastMonthList() async {
+  static Future<List<Cashflow>> getAllData() async {
     var db = DbHelper();
-    var query = _querySummary("*", 0);
-    query = query.replaceAll(RegExp(r' type = 0 AND'), " ");
+    var query = "SELECT * FROM cashflow ORDER BY date DESC";
     var listRes = await db.selectQuery(query);
     return listRes.map((e) => Cashflow.fromMap(e)).toList();
   }
@@ -41,7 +40,7 @@ class CashflowTransaction {
 
   static Future<Map<String, dynamic>> getSummaryMonth() async {
     var db = DbHelper();
-    var column = "SUM(value) AS value";
+    var column = "TOTAL(value) AS value";
     var queryIncome = _querySummary(column, 1);
     var queryExpense = _querySummary(column, 2);
     var query =
