@@ -11,12 +11,20 @@ class SettingController extends GetxController {
   late TextEditingController passwordOld;
   late TextEditingController passwordNew;
   final box = GetStorage();
+  final darkMode = false.obs;
 
   @override
   void onInit() {
     super.onInit();
     passwordOld = TextEditingController();
     passwordNew = TextEditingController();
+    darkMode.value = box.read('darkmode') ?? false;
+  }
+
+  void changeThemeMode(bool isDarkMode) {
+    darkMode.value = !isDarkMode;
+    Get.changeThemeMode(isDarkMode ? ThemeMode.light : ThemeMode.dark);
+    box.write('darkmode', darkMode.value);
   }
 
   Future<String> updatePassword() async {

@@ -15,6 +15,16 @@ class SettingView extends GetView<SettingController> {
       appBar: AppBar(
         title: const Text('Pengaturan'),
         centerTitle: true,
+        actions: [
+          Obx(
+            () => IconButton(
+              onPressed: () => controller.changeThemeMode(Get.isDarkMode),
+              icon: controller.darkMode.value
+                  ? const Icon(Icons.light_mode_outlined)
+                  : const Icon(Icons.dark_mode_outlined),
+            ),
+          ),
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.all(12),
@@ -31,18 +41,30 @@ class SettingView extends GetView<SettingController> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                PasswordFormWidget(
+                Obx(
+                  () => PasswordFormWidget(
                     controller: controller.passwordOld,
                     obscureText: true,
                     labelText: "Password saat ini",
                     hintText: "Masukkan password saat ini",
-                    icon: Icons.lock),
-                PasswordFormWidget(
+                    icon: Icons.lock,
+                    color: controller.darkMode.value
+                        ? Colors.white70
+                        : Colors.black54,
+                  ),
+                ),
+                Obx(
+                  () => PasswordFormWidget(
                     controller: controller.passwordNew,
                     obscureText: true,
                     labelText: "Password baru",
                     hintText: "Masukkan password baru",
-                    icon: Icons.lock),
+                    icon: Icons.lock,
+                    color: controller.darkMode.value
+                        ? Colors.white70
+                        : Colors.black54,
+                  ),
+                ),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(

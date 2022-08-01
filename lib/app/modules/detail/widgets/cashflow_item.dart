@@ -44,6 +44,7 @@ class CasflowItem extends StatelessWidget {
               cashflow.description,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
+                fontSize: 16,
               ),
             ),
             const SizedBox(
@@ -53,7 +54,6 @@ class CasflowItem extends StatelessWidget {
               DateFormat.yMMMMEEEEd().format(cashflow.date),
               style: const TextStyle(
                 fontSize: 12,
-                color: Colors.blueGrey,
               ),
             ),
           ],

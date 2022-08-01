@@ -4,11 +4,13 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
+import 'package:logcashflow/app/modules/views/theme/app_theme.dart';
 
 import 'app/routes/app_pages.dart';
 
 void main() async {
   await GetStorage.init();
+  final box = GetStorage();
   Intl.defaultLocale = 'id_ID';
   runApp(
     GetMaterialApp(
@@ -23,10 +25,10 @@ void main() async {
       ],
       supportedLocales: const [Locale('en', ''), Locale('id', '')],
       locale: const Locale('id', 'ID'),
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
-        useMaterial3: true,
-      ),
+      theme: Themes.lightTheme,
+      darkTheme: Themes.darkTheme,
+      themeMode:
+          box.read("darkmode") ?? false ? ThemeMode.dark : ThemeMode.light,
     ),
   );
 }

@@ -33,17 +33,21 @@ class LoginView extends GetView<LoginController> {
             Column(
               children: [
                 PasswordFormWidget(
-                    controller: controller.usernameText,
-                    obscureText: false,
-                    labelText: "Username",
-                    hintText: "Masukkan username",
-                    icon: Icons.person),
+                  controller: controller.usernameText,
+                  obscureText: false,
+                  labelText: "Username",
+                  hintText: "Masukkan username",
+                  icon: Icons.person,
+                  color: Get.isDarkMode ? Colors.white70 : Colors.black54,
+                ),
                 PasswordFormWidget(
-                    controller: controller.passwordText,
-                    obscureText: true,
-                    labelText: "Password",
-                    hintText: "Masukkan password",
-                    icon: Icons.lock),
+                  controller: controller.passwordText,
+                  obscureText: true,
+                  labelText: "Password",
+                  hintText: "Masukkan password",
+                  icon: Icons.lock,
+                  color: Get.isDarkMode ? Colors.white70 : Colors.black54,
+                ),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(

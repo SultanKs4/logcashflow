@@ -6,6 +6,7 @@ class PasswordFormWidget extends StatelessWidget {
   final String labelText;
   final String hintText;
   final IconData icon;
+  final Color color;
 
   const PasswordFormWidget({
     Key? key,
@@ -14,6 +15,7 @@ class PasswordFormWidget extends StatelessWidget {
     required this.labelText,
     required this.hintText,
     required this.icon,
+    required this.color,
   }) : super(key: key);
 
   @override
@@ -27,11 +29,13 @@ class PasswordFormWidget extends StatelessWidget {
           prefixIcon: Icon(icon),
           labelText: labelText,
           hintText: hintText,
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black87, width: 2),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
+            borderSide: BorderSide(color: color, width: 2),
           ),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black87, width: 2),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
+            borderSide: BorderSide(color: color, width: 2),
           ),
         ),
       ),

@@ -47,10 +47,10 @@ class HomeView extends GetView<HomeController> {
                 ),
               ],
             ),
-            const SizedBox(height: 50),
             // CashflowChart(controller: controller),
+            const SizedBox(height: 20),
             LineChartWidget(controller: controller),
-            const SizedBox(height: 50),
+            const SizedBox(height: 20),
             Column(
               children: [
                 Row(
@@ -90,7 +90,8 @@ class HomeView extends GetView<HomeController> {
                       icon: Icons.summarize,
                       color: Colors.blue,
                       func: () {
-                        Get.toNamed(Routes.detail);
+                        Get.toNamed(Routes.detail)
+                            ?.then((value) => controller.refreshUiTheme());
                       },
                     ),
                     // Setting button
@@ -100,7 +101,8 @@ class HomeView extends GetView<HomeController> {
                       text: "Pengaturan",
                       color: Colors.blue,
                       func: () {
-                        Get.toNamed(Routes.setting);
+                        Get.toNamed(Routes.setting)
+                            ?.then((value) => controller.refreshUiTheme());
                       },
                     ),
                   ],

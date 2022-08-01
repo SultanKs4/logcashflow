@@ -4,7 +4,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:intl/intl.dart';
 import 'package:logcashflow/app/data/database/cashflow_transaction.dart';
 import 'package:logcashflow/app/data/helper/currency.dart';
 import 'package:logcashflow/app/data/models/chart.dart';
@@ -23,24 +22,29 @@ class HomeController extends GetxController {
   final dataChartFl = [LineChartBarData(spots: const [])].obs;
   final bottomAxis = DateTime.now().obs;
   final maxY = 10000.0.obs;
+  final colorBorder = Colors.white70.obs;
 
   Future<Map<String, dynamic>> getDataChartFl() async {
     var dataCashflow = await CashflowTransaction.getLastMonthMapList();
     List<Chart> dataChartIncome = [Chart()];
     List<Chart> dataChartExpense = [Chart()];
-    if (dataCashflow.isNotEmpty) {
+
+    if (dataCashflow[0].isNotEmpty) {
       dataChartIncome = dataCashflow[0];
+    }
+
+    if (dataCashflow[1].isNotEmpty) {
       dataChartExpense = dataCashflow[1];
     }
-    var maxIncome = dataChartIncome.map((e) => e.value).reduce(max);
-    var maxOutcome = dataChartExpense.map((e) => e.value).reduce(max);
+
+    var listIncome = dataChartIncome.map((e) => e.value).reduce(max);
+    var listExpense = dataChartExpense.map((e) => e.value).reduce(max);
     return {
       "dataList": [
         LineChartBarData(
           color: Colors.green[400],
           isCurved: true,
           barWidth: 4,
-          dotData: FlDotData(show: false),
           spots: dataChartIncome
               .map((e) => FlSpot(e.date.day.toDouble(), e.value.toDouble()))
               .toList(),
@@ -49,13 +53,12 @@ class HomeController extends GetxController {
             color: Colors.red[400],
             isCurved: true,
             barWidth: 4,
-            dotData: FlDotData(show: false),
             spots: dataChartExpense
                 .map((e) => FlSpot(e.date.day.toDouble(), e.value.toDouble()))
                 .toList())
       ],
       "axis": dataChartIncome[0].date,
-      "max": (max(maxIncome, maxOutcome) + 10000).toDouble()
+      "max": (max(listIncome, listExpense) + 10000).toDouble()
     };
   }
 
@@ -67,6 +70,11 @@ class HomeController extends GetxController {
     dataChartFl.value = dataFl['dataList'];
     bottomAxis.value = dataFl['axis'];
     maxY.value = dataFl['max'];
+    refreshUiTheme();
+  }
+
+  void refreshUiTheme() {
+    colorBorder.value = Get.isDarkMode ? Colors.white70 : Colors.black54;
   }
 
   @override

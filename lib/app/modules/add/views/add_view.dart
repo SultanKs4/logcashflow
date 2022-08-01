@@ -33,6 +33,7 @@ class AddView extends GetView<AddController> {
               labelText: "Tanggal",
               hintText: "Masukkan Tanggal Disini",
               icon: Icons.date_range_rounded,
+              color: Get.isDarkMode ? Colors.white70 : Colors.black54,
               onTap: () async {
                 FocusScope.of(context).requestFocus(FocusNode());
                 var date = await showDatePicker(
@@ -51,6 +52,7 @@ class AddView extends GetView<AddController> {
               labelText: "Nominal",
               hintText: "Masukkan Nominal",
               icon: Icons.money_rounded,
+              color: Get.isDarkMode ? Colors.white70 : Colors.black54,
               keyboardType:
                   const TextInputType.numberWithOptions(decimal: true),
               inputFormatters: [
@@ -67,6 +69,7 @@ class AddView extends GetView<AddController> {
               controller: controller.descText,
               labelText: "Keterangan",
               hintText: "Masukkan Keterangan",
+              color: Get.isDarkMode ? Colors.white70 : Colors.black54,
               icon: Icons.description_rounded,
             ),
             const SizedBox(height: 20),

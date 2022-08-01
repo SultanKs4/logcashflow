@@ -10,6 +10,7 @@ class AddFormWidget extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final Function(String)? onChanged;
   final IconData icon;
+  final Color color;
 
   const AddFormWidget({
     Key? key,
@@ -21,6 +22,7 @@ class AddFormWidget extends StatelessWidget {
     this.inputFormatters,
     this.onChanged,
     required this.icon,
+    required this.color,
   }) : super(key: key);
 
   @override
@@ -38,11 +40,13 @@ class AddFormWidget extends StatelessWidget {
           labelText: labelText,
           labelStyle: const TextStyle(fontWeight: FontWeight.bold),
           hintText: hintText,
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black87, width: 2),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
+            borderSide: BorderSide(color: color, width: 2),
           ),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black87, width: 2),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
+            borderSide: BorderSide(color: color, width: 2),
           ),
         ),
       ),
