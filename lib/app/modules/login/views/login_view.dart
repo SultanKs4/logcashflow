@@ -57,12 +57,13 @@ class LoginView extends GetView<LoginController> {
                         //         MaterialStateProperty.all(Colors.green)),
                         onPressed: () async {
                           String resLogin = await controller.checkLogin();
+                          var colorNum = Get.isDarkMode ? 400 : 300;
                           if (resLogin == "success") {
                             Get.offAndToNamed(Routes.home);
                           } else {
                             Get.snackbar(
                                 margin: const EdgeInsets.all(12),
-                                backgroundColor: Colors.red[300],
+                                backgroundColor: Colors.red[colorNum],
                                 "Login Error",
                                 resLogin);
                           }

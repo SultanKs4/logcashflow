@@ -30,15 +30,25 @@ class AddController extends GetxController {
     super.onClose();
   }
 
-  void addCashflow() async {
+  Future<String> addCashflow() async {
+    if (value.isEqual(0.0)) {
+      return "nominal tidak boleh kosong";
+    }
+
+    if (descText.text.isEmpty) {
+      return "deskripsi tidak boleh kosong";
+    }
+
     Users user = box.read("user");
     Cashflow data = Cashflow(
-        usersId: user.id,
-        type: type,
-        date: date,
-        value: value,
-        description: descText.text);
+      usersId: user.id,
+      type: type,
+      date: date,
+      value: value,
+      description: descText.text,
+    );
     await CashflowTransaction.addCashflow(data);
+    return "success";
   }
 
   String typeString() {

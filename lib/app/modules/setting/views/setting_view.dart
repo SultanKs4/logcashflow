@@ -71,13 +71,14 @@ class SettingView extends GetView<SettingController> {
                   child: ElevatedButton(
                       onPressed: () async {
                         String result = await controller.updatePassword();
+                        var colorNum = Get.isDarkMode ? 400 : 300;
 
-                        var bg = Colors.red[300];
+                        var bg = Colors.red[colorNum];
                         var title = "Ubah Password Error";
                         var message = result;
 
                         if (result == "sukses") {
-                          bg = Colors.green[300];
+                          bg = Colors.green[colorNum];
                           title = "Ubah Password Sukses";
                           message = "Berhasil mengubah password";
                         }
@@ -87,7 +88,6 @@ class SettingView extends GetView<SettingController> {
                           backgroundColor: bg,
                           title,
                           message,
-                          duration: const Duration(seconds: 3),
                           snackbarStatus: (status) {
                             if (status == SnackbarStatus.CLOSED &&
                                 result == "sukses") {

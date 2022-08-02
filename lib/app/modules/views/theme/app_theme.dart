@@ -4,7 +4,7 @@ import 'package:logcashflow/app/modules/views/theme/app_colors.dart';
 class Themes {
   static final lightTheme = ThemeData(
     useMaterial3: true,
-    // colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
+    colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
     // colorScheme: const ColorScheme.light(
     //   primary: AppColors.lavender,
     //   onPrimary: Colors.black,

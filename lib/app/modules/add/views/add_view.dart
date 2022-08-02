@@ -80,9 +80,23 @@ class AddView extends GetView<AddController> {
                       backgroundColor: MaterialStateProperty.all(
                           (controller.type == 1) ? Colors.green : Colors.red)),
                   onPressed: () async {
-                    controller.addCashflow();
+                    var resAdd = await controller.addCashflow();
+                    var colorNum = Get.isDarkMode ? 400 : 300;
+                    Get.snackbar(
+                      margin: const EdgeInsets.all(12),
+                      backgroundColor: resAdd != "success"
+                          ? Colors.red[colorNum]
+                          : Colors.green[colorNum],
+                      "Add Data Error",
+                      resAdd,
+                      snackbarStatus: (status) {
+                        if (status == SnackbarStatus.CLOSED &&
+                            resAdd == "success") {
+                          Get.back();
+                        }
+                      },
+                    );
                     // Get.offAndToNamed(Routes.home);
-                    Get.back();
                   },
                   child: const Text(
                     "Submit",
