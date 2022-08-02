@@ -13,104 +13,105 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        margin: const EdgeInsets.all(12),
-        padding: const EdgeInsets.only(top: 50),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(bottom: 24),
-                  child: const Text(
-                    "Rangkuman Bulan Ini",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
+      body: SafeArea(
+        child: Container(
+          margin: const EdgeInsets.all(12),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(bottom: 24),
+                    child: const Text(
+                      "Rangkuman Bulan Ini",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: Obx(
+                  Container(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: Obx(
+                      () => TextSummaryWidget(
+                        text: "Pengeluaran: ${controller.expense.value}",
+                        color: Colors.red,
+                      ),
+                    ),
+                  ),
+                  Obx(
                     () => TextSummaryWidget(
-                      text: "Pengeluaran: ${controller.expense.value}",
-                      color: Colors.red,
-                    ),
-                  ),
-                ),
-                Obx(
-                  () => TextSummaryWidget(
-                    text: "Pemasukan: ${controller.income.value}",
-                    color: Colors.green,
-                  ),
-                ),
-              ],
-            ),
-            // CashflowChart(controller: controller),
-            const SizedBox(height: 20),
-            LineChartWidget(controller: controller),
-            const SizedBox(height: 20),
-            Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // Income button
-                    ButtonHomeWidget(
-                      controller: controller,
-                      text: "Tambah Pemasukan",
-                      icon: Icons.add_rounded,
+                      text: "Pemasukan: ${controller.income.value}",
                       color: Colors.green,
-                      func: () {
-                        Get.toNamed(Routes.add, arguments: 1)
-                            ?.then((value) => controller.refreshData());
-                      },
                     ),
-                    // Outcome button
-                    ButtonHomeWidget(
-                      controller: controller,
-                      text: "Tambah Pengeluaran",
-                      icon: Icons.remove,
-                      color: Colors.red,
-                      func: () {
-                        Get.toNamed(Routes.add, arguments: 2)
-                            ?.then((value) => controller.refreshData());
-                      },
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // Detail button
-                    ButtonHomeWidget(
-                      controller: controller,
-                      text: "Detail Cash Flow",
-                      icon: Icons.summarize,
-                      color: Colors.blue,
-                      func: () {
-                        Get.toNamed(Routes.detail)
-                            ?.then((value) => controller.refreshUiTheme());
-                      },
-                    ),
-                    // Setting button
-                    ButtonHomeWidget(
-                      controller: controller,
-                      icon: Icons.settings,
-                      text: "Pengaturan",
-                      color: Colors.blue,
-                      func: () {
-                        Get.toNamed(Routes.setting)
-                            ?.then((value) => controller.refreshUiTheme());
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
+                  ),
+                ],
+              ),
+              // CashflowChart(controller: controller),
+              const SizedBox(height: 20),
+              LineChartWidget(controller: controller),
+              const SizedBox(height: 20),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Income button
+                      ButtonHomeWidget(
+                        controller: controller,
+                        text: "Tambah Pemasukan",
+                        icon: Icons.add_rounded,
+                        color: Colors.green,
+                        func: () {
+                          Get.toNamed(Routes.add, arguments: 1)
+                              ?.then((value) => controller.refreshData());
+                        },
+                      ),
+                      // Outcome button
+                      ButtonHomeWidget(
+                        controller: controller,
+                        text: "Tambah Pengeluaran",
+                        icon: Icons.remove_rounded,
+                        color: Colors.red,
+                        func: () {
+                          Get.toNamed(Routes.add, arguments: 2)
+                              ?.then((value) => controller.refreshData());
+                        },
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Detail button
+                      ButtonHomeWidget(
+                        controller: controller,
+                        text: "Detail Cash Flow",
+                        icon: Icons.summarize,
+                        color: Colors.blue,
+                        func: () {
+                          Get.toNamed(Routes.detail)
+                              ?.then((value) => controller.refreshUiTheme());
+                        },
+                      ),
+                      // Setting button
+                      ButtonHomeWidget(
+                        controller: controller,
+                        icon: Icons.settings,
+                        text: "Pengaturan",
+                        color: Colors.blue,
+                        func: () {
+                          Get.toNamed(Routes.setting)
+                              ?.then((value) => controller.refreshUiTheme());
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

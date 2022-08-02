@@ -33,6 +33,10 @@ class HomeController extends GetxController {
     return {
       "dataList": [
         LineChartBarData(
+          belowBarData: BarAreaData(
+            show: true,
+            // color: Colors.greenAccent[100],
+          ),
           color: Colors.green[400],
           isCurved: true,
           barWidth: 4,
@@ -41,6 +45,10 @@ class HomeController extends GetxController {
               .toList(),
         ),
         LineChartBarData(
+            belowBarData: BarAreaData(
+              show: true,
+              // color: Colors.redAccent[100],
+            ),
             color: Colors.red[400],
             isCurved: true,
             barWidth: 4,
