@@ -13,9 +13,7 @@ dependencies:
   path: ^1.8.1
   intl: ^0.17.0
   get_storage: ^2.0.3
-  charts_flutter: ^0.12.0
   fl_chart: ^0.55.0
-  flutter_archive: ^5.0.0
   flutter:
     sdk: flutter
   flutter_localizations:

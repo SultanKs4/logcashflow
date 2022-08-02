@@ -15,6 +15,7 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       body: Container(
         margin: const EdgeInsets.all(12),
+        padding: const EdgeInsets.only(top: 50),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [

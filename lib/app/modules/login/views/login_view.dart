@@ -12,7 +12,8 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.all(12.0),
+        margin: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.only(top: 12),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
